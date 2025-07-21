@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mr_orange_store/common/widgets/containers/primary_header_container.dart';
 import 'package:mr_orange_store/common/widgets/containers/search_container.dart';
 import 'package:mr_orange_store/common/widgets/layouts/grid_layout.dart';
 import 'package:mr_orange_store/common/widgets/products/card/product_cards/product_card_vertical.dart';
 import 'package:mr_orange_store/common/widgets/text/section_heading.dart';
+import 'package:mr_orange_store/features/pesonalization/screens/all_product/all_products.dart';
 import 'package:mr_orange_store/features/shop/screens/home/widgets/home_app_bar.dart';
 import 'package:mr_orange_store/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:mr_orange_store/features/shop/screens/home/widgets/slider_promo.dart';
@@ -71,7 +73,9 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SectionHeading(
                     title: 'Popular Products',
-                    onPressed: () {},
+                    onPressed: () => Get.to(
+                      () => const AllProducts(),
+                    ),
                   ),
                   const SizedBox(
                     height: OSizes.spaceBtwItems,
