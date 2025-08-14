@@ -6,6 +6,7 @@ import 'package:mr_orange_store/common/widgets/containers/primary_header_contain
 import 'package:mr_orange_store/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:mr_orange_store/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:mr_orange_store/common/widgets/text/section_heading.dart';
+import 'package:mr_orange_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:mr_orange_store/features/pesonalization/screens/address/address.dart';
 import 'package:mr_orange_store/features/pesonalization/screens/profile/profile.dart';
 import 'package:mr_orange_store/features/shop/order/order.dart';
@@ -154,7 +155,8 @@ class SettingsScreen extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          AuthenticationRepository.instance.logout(),
                       child: const Text('Logout'),
                     ),
                   ),

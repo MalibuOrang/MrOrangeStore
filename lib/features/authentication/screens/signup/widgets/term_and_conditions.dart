@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:mr_orange_store/features/authentication/controllers/signup/signup_controller.dart';
 import 'package:mr_orange_store/utils/constants/colors.dart';
 import 'package:mr_orange_store/utils/constants/sizes.dart';
 import 'package:mr_orange_store/utils/constants/text_strings.dart';
@@ -11,6 +13,7 @@ class TermsAndConditionCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SignupController());
     final dark = THelperFunctions.isDarkMode(context);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,9 +21,12 @@ class TermsAndConditionCheckbox extends StatelessWidget {
         SizedBox(
           width: 24,
           height: 24,
-          child: Checkbox.adaptive(
-            value: true,
-            onChanged: (value) {},
+          child: Obx(
+            () => Checkbox.adaptive(
+              value: controller.privacyPolicy.value,
+              onChanged: (value) => controller.privacyPolicy.value =
+                  !controller.privacyPolicy.value,
+            ),
           ),
         ),
         const SizedBox(

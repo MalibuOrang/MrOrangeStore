@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "317289061297",
+    "project_id": "mr-orange-store-7bea4",
+    "storage_bucket": "mr-orange-store-7bea4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317289061297:android:88fe5129608b9e9b68fb90",
+        "android_client_info": {
+          "package_name": "com.example.mr_orange_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317289061297-jr6frnuibhki9v2o03mh5biptdmbk6c3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mr_orange_store",
+            "certificate_hash": "e99a0a2eb608cc419c3ac80bcde22d364d8ca2b2"
+          }
+        },
+        {
+          "client_id": "317289061297-9je3pa33j5l78cu1ine6dagdddd0290g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVm6BB9_Dk9LYIngrjNS4GZNOKbtcK8OM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317289061297-9je3pa33j5l78cu1ine6dagdddd0290g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "317289061297-1vblp1kmjjtipqrbho6his2suk5kfv5u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.mrOrangeStore"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

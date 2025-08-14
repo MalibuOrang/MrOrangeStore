@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
 import 'package:mr_orange_store/common/widgets/image_text_widget/vertical_image_text.dart';
 import 'package:mr_orange_store/features/shop/screens/sub_category/sub_categories.dart';
 import 'package:mr_orange_store/utils/constants/image_strings.dart';
