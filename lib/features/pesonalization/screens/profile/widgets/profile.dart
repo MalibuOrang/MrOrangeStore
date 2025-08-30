@@ -6,6 +6,7 @@ import 'package:mr_orange_store/common/widgets/images/circular_image.dart';
 import 'package:mr_orange_store/common/widgets/text/section_heading.dart';
 import 'package:mr_orange_store/features/authentication/controllers/user/user_controller.dart';
 import 'package:mr_orange_store/features/pesonalization/screens/profile/change_name.dart';
+import 'package:mr_orange_store/features/shop/screens/home/widgets/shimmer.dart';
 import 'package:mr_orange_store/utils/constants/image_strings.dart';
 import 'package:mr_orange_store/utils/constants/sizes.dart';
 
@@ -31,13 +32,25 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    const CircularImage(
-                      image: TImages.user,
-                      width: 80,
-                      height: 80,
-                    ),
+                    Obx(() {
+                      final networkImage = controller.user.value.profilePicture;
+                      final image =
+                          networkImage.isNotEmpty ? networkImage : TImages.user;
+                      return controller.imageUploading.value
+                          ? const TShimmerEffect(
+                              width: 80,
+                              height: 80,
+                              radius: 80,
+                            )
+                          : CircularImage(
+                              image: image,
+                              width: 80,
+                              height: 80,
+                              isNetworkImage: networkImage.isNotEmpty,
+                            );
+                    }),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () => controller.uploadUserProfilePicture(),
                       child: const Text(
                         'Change Profile Picture',
                       ),

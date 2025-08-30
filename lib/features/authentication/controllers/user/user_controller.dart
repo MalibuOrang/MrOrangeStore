@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mr_orange_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:mr_orange_store/data/repositories/user/user_repository.dart';
 import 'package:mr_orange_store/features/authentication/models/user_model.dart';
@@ -18,6 +19,7 @@ class UserController extends GetxController {
   Rx<UserModel> user = UserModel.empty().obs;
   final userRepository = Get.put(UserRepository());
   final hidePassword = false.obs;
+  final imageUploading = false.obs;
   final verifyEmail = TextEditingController();
   final verifyPassword = TextEditingController();
   GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();
@@ -43,7 +45,8 @@ class UserController extends GetxController {
 
   Future<void> saveUserRecord(UserCredential? userCredential) async {
     try {
-      if (userCredential != null) {
+      await fetchUserRecord();
+      if (userCredential != null && user.value.id.isEmpty) {
         final nameParts =
             UserModel.nameParts(userCredential.user!.displayName ?? '');
         final username =
@@ -141,6 +144,33 @@ class UserController extends GetxController {
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    }
+  }
+
+  uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 70,
+        maxHeight: 512,
+        maxWidth: 512,
+      );
+      if (image != null) {
+        imageUploading.value = true;
+        final imageUrl =
+            await userRepository.uploadImage('User/Images/Profile', image);
+        Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+        TLoaders.successSnackBar(
+            title: 'Congratulations',
+            message: 'Your Profile Picture has been updated.');
+      }
+    } catch (e) {
+      TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    } finally {
+      imageUploading.value = false;
     }
   }
 }
