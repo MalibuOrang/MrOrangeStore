@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:mr_orange_store/common/widgets/images/circular_image.dart';
+import 'package:mr_orange_store/features/authentication/controllers/user/user_controller.dart';
 import 'package:mr_orange_store/utils/constants/colors.dart';
 import 'package:mr_orange_store/utils/constants/image_strings.dart';
 
@@ -12,6 +13,7 @@ class UserProfileTile extends StatelessWidget {
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return ListTile(
       leading: const CircularImage(
         image: TImages.user,
@@ -20,14 +22,14 @@ class UserProfileTile extends StatelessWidget {
         padding: 0,
       ),
       title: Text(
-        'MrOrange',
+        controller.user.value.fullName,
         style: Theme.of(context)
             .textTheme
             .headlineSmall!
             .apply(color: TColors.white),
       ),
       subtitle: Text(
-        'support@mr_orange_store.com',
+        controller.user.value.email,
         style:
             Theme.of(context).textTheme.bodyMedium!.apply(color: TColors.white),
       ),
