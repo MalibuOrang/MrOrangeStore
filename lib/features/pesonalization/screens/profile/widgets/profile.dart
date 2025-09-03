@@ -6,7 +6,7 @@ import 'package:mr_orange_store/common/widgets/images/circular_image.dart';
 import 'package:mr_orange_store/common/widgets/text/section_heading.dart';
 import 'package:mr_orange_store/features/authentication/controllers/user/user_controller.dart';
 import 'package:mr_orange_store/features/pesonalization/screens/profile/change_name.dart';
-import 'package:mr_orange_store/features/shop/screens/home/widgets/shimmer.dart';
+import 'package:mr_orange_store/common/widgets/shimmer/shimmer.dart';
 import 'package:mr_orange_store/utils/constants/image_strings.dart';
 import 'package:mr_orange_store/utils/constants/sizes.dart';
 

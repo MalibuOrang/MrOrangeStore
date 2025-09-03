@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mr_orange_store/common/widgets/images/circular_image.dart';
 import 'package:mr_orange_store/utils/constants/colors.dart';
 import 'package:mr_orange_store/utils/constants/sizes.dart';
 import 'package:mr_orange_store/utils/helpers/helper_functions.dart';
@@ -9,55 +10,51 @@ class VerticalImageText extends StatelessWidget {
     required this.image,
     required this.title,
     this.textColor = TColors.white,
+    this.isNetworkImage = true,
     this.backgroundColor,
     this.onTap,
   });
   final String image, title;
   final Color textColor;
   final Color? backgroundColor;
+  final bool isNetworkImage;
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    final dark = THelperFunctions.isDarkMode(context);
-    return Padding(
-      padding: const EdgeInsets.only(
-        right: OSizes.spaceBtwItems,
-      ),
-      child: Column(
-        children: [
-          Container(
-            width: 56,
-            height: 56,
-            padding: const EdgeInsets.all(OSizes.sm),
-            decoration: BoxDecoration(
-              color: backgroundColor ?? (dark ? TColors.black : TColors.white),
-              borderRadius: BorderRadius.circular(100),
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.only(
+          right: OSizes.spaceBtwItems,
+        ),
+        child: Column(
+          children: [
+            CircularImage(
+              image: image,
+              fit: BoxFit.fitWidth,
+              padding: OSizes.sm * 1.4,
+              isNetworkImage: isNetworkImage,
+              backgroundColor: backgroundColor,
+              overlayColor: THelperFunctions.isDarkMode(context)
+                  ? TColors.light
+                  : TColors.dark,
             ),
-            child: Center(
-              child: Image(
-                image: AssetImage(
-                  image,
-                ),
-                fit: BoxFit.cover,
-                color: dark ? TColors.darkGrey : TColors.dark,
+            const SizedBox(
+              height: OSizes.spaceBtwItems / 2,
+            ),
+            SizedBox(
+              width: 55,
+              child: Text(
+                title,
+                style: Theme.of(context).textTheme.labelMedium!.apply(
+                      color: textColor,
+                    ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-            ),
-          ),
-          const SizedBox(
-            height: OSizes.spaceBtwItems / 2,
-          ),
-          SizedBox(
-            width: 55,
-            child: Text(
-              title,
-              style: Theme.of(context).textTheme.labelMedium!.apply(
-                    color: textColor,
-                  ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

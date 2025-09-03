@@ -6,6 +6,7 @@ import 'package:mr_orange_store/common/widgets/layouts/grid_layout.dart';
 import 'package:mr_orange_store/common/widgets/products/card/brand_card.dart';
 import 'package:mr_orange_store/common/widgets/products/card/cart_menu_icon.dart';
 import 'package:mr_orange_store/common/widgets/text/section_heading.dart';
+import 'package:mr_orange_store/features/shop/controllers/category_controller.dart';
 import 'package:mr_orange_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:mr_orange_store/utils/constants/colors.dart';
 import 'package:mr_orange_store/utils/constants/sizes.dart';
@@ -16,8 +17,9 @@ class StoreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final categories = CategoryController.instance.featuredCategories;
     return DefaultTabController(
-      length: 5,
+      length: categories.length,
       child: Scaffold(
         appBar: CustomAppBar(
           title: Text(
@@ -34,82 +36,69 @@ class StoreScreen extends StatelessWidget {
           headerSliverBuilder: (_, innerBoxIsScrolled) {
             return [
               SliverAppBar(
-                  automaticallyImplyLeading: false,
-                  pinned: true,
-                  floating: true,
-                  backgroundColor: THelperFunctions.isDarkMode(context)
-                      ? TColors.black
-                      : TColors.white,
-                  expandedHeight: 440,
-                  flexibleSpace: Padding(
-                    padding: const EdgeInsets.all(
-                      OSizes.defaultSpace,
-                    ),
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        const SizedBox(
-                          height: OSizes.spaceBtwItems,
-                        ),
-                        const SearchContainer(
-                          text: 'Search in Store',
-                          showBorder: true,
-                          showBackground: false,
-                          padding: EdgeInsets.zero,
-                        ),
-                        const SizedBox(
-                          height: OSizes.spaceBtwSections,
-                        ),
-                        SectionHeading(
-                          title: 'Featured Brands',
-                          showActionButton: true,
-                          onPressed: () {},
-                        ),
-                        const SizedBox(
-                          height: OSizes.spaceBtwItems / 1.5,
-                        ),
-                        GridLayout(
-                          itemCount: 4,
-                          mainAxisExtent: 80,
-                          itemBuilder: (_, index) {
-                            return const BrandCard(
-                              showBorder: false,
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                automaticallyImplyLeading: false,
+                pinned: true,
+                floating: true,
+                backgroundColor: THelperFunctions.isDarkMode(context)
+                    ? TColors.black
+                    : TColors.white,
+                expandedHeight: 440,
+                flexibleSpace: Padding(
+                  padding: const EdgeInsets.all(
+                    OSizes.defaultSpace,
                   ),
-                  bottom: const CustomTabBar(
-                    tabs: [
-                      Tab(
-                        child: Text('Sports'),
+                  child: ListView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      const SizedBox(
+                        height: OSizes.spaceBtwItems,
                       ),
-                      Tab(
-                        child: Text('Furniture'),
+                      const SearchContainer(
+                        text: 'Search in Store',
+                        showBorder: true,
+                        showBackground: false,
+                        padding: EdgeInsets.zero,
                       ),
-                      Tab(
-                        child: Text('Electronics'),
+                      const SizedBox(
+                        height: OSizes.spaceBtwSections,
                       ),
-                      Tab(
-                        child: Text('Clothes'),
+                      SectionHeading(
+                        title: 'Featured Brands',
+                        showActionButton: true,
+                        onPressed: () {},
                       ),
-                      Tab(
-                        child: Text('Cosmetics'),
-                      )
+                      const SizedBox(
+                        height: OSizes.spaceBtwItems / 1.5,
+                      ),
+                      GridLayout(
+                        itemCount: 4,
+                        mainAxisExtent: 80,
+                        itemBuilder: (_, index) {
+                          return const BrandCard(
+                            showBorder: false,
+                          );
+                        },
+                      ),
                     ],
-                  ))
+                  ),
+                ),
+                bottom: CustomTabBar(
+                  tabs: categories
+                      .map(
+                        (category) => Tab(text: category.name),
+                      )
+                      .toList(),
+                ),
+              )
             ];
           },
-          body: const TabBarView(
-            children: [
-              CategoryTab(),
-              CategoryTab(),
-              CategoryTab(),
-              CategoryTab(),
-              CategoryTab(),
-            ],
+          body: TabBarView(
+            children: categories
+                .map(
+                  (category) => CategoryTab(category: category),
+                )
+                .toList(),
           ),
         ),
       ),

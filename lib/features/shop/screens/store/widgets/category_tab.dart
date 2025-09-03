@@ -3,12 +3,16 @@ import 'package:mr_orange_store/common/widgets/brands/brand_card.dart';
 import 'package:mr_orange_store/common/widgets/layouts/grid_layout.dart';
 import 'package:mr_orange_store/common/widgets/products/card/product_cards/product_card_vertical.dart';
 import 'package:mr_orange_store/common/widgets/text/section_heading.dart';
+import 'package:mr_orange_store/features/shop/models/category_model.dart';
 import 'package:mr_orange_store/utils/constants/image_strings.dart';
 import 'package:mr_orange_store/utils/constants/sizes.dart';
 
 class CategoryTab extends StatelessWidget {
-  const CategoryTab({super.key});
-
+  const CategoryTab({
+    super.key,
+    required this.category,
+  });
+  final CategoryModel category;
   @override
   Widget build(BuildContext context) {
     return ListView(

@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:mr_orange_store/features/shop/screens/home/widgets/shimmer.dart';
+import 'package:mr_orange_store/common/widgets/shimmer/shimmer.dart';
 import 'package:mr_orange_store/utils/constants/colors.dart';
 import 'package:mr_orange_store/utils/constants/sizes.dart';
 import 'package:mr_orange_store/utils/helpers/helper_functions.dart';
