@@ -10,7 +10,6 @@ import 'package:mr_orange_store/features/shop/screens/home/widgets/home_app_bar.
 import 'package:mr_orange_store/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:mr_orange_store/features/shop/screens/home/widgets/slider_promo.dart';
 import 'package:mr_orange_store/utils/constants/colors.dart';
-import 'package:mr_orange_store/utils/constants/image_strings.dart';
 import 'package:mr_orange_store/utils/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -61,13 +60,7 @@ class HomeScreen extends StatelessWidget {
               padding: const EdgeInsets.all(OSizes.defaultSpace),
               child: Column(
                 children: [
-                  const PromoSlider(
-                    banners: [
-                      TImages.promoBanner1,
-                      TImages.promoBanner2,
-                      TImages.promoBanner3,
-                    ],
-                  ),
+                  const PromoSlider(),
                   const SizedBox(
                     height: OSizes.spaceBtwSections,
                   ),

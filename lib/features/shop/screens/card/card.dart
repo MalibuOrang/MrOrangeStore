@@ -5,8 +5,8 @@ import 'package:mr_orange_store/features/shop/screens/card/widgets/card_items.da
 import 'package:mr_orange_store/features/shop/screens/checkout/checkout.dart';
 import 'package:mr_orange_store/utils/constants/sizes.dart';
 
-class CardScreen extends StatelessWidget {
-  const CardScreen({
+class CartScreen extends StatelessWidget {
+  const CartScreen({
     super.key,
   });
 

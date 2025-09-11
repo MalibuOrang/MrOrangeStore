@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:mr_orange_store/bindings/general_bindings.dart';
+import 'package:mr_orange_store/routes/app_routes.dart';
 import 'package:mr_orange_store/utils/constants/colors.dart';
 import 'package:mr_orange_store/utils/theme/theme.dart';
 
@@ -15,6 +16,7 @@ class MrOrangeStore extends StatelessWidget {
       theme: OAppTheme.lightTheme,
       darkTheme: OAppTheme.darkTheme,
       initialBinding: GeneralBindings(),
+      getPages: AppRoutes.pages,
       home: const Scaffold(
         backgroundColor: TColors.primary,
         body: Center(
